@@ -17,9 +17,9 @@ namespace LogicaAplicacion.CasosUso
         {
             Repo = repo;
         }
-        public void Baja(Usuario obj)
+        public void Baja(int id)
         {
-            Repo.Remove(obj);
+            Repo.Remove(id);
         }
     }
 }

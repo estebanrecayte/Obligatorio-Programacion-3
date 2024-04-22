@@ -25,7 +25,7 @@ namespace LogicaDatos.Repositorios
             throw new NotImplementedException();
         }
 
-        public void Remove(Linea ojt)
+        public void Remove(int id)
         {
             throw new NotImplementedException();
         }

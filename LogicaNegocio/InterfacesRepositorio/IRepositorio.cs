@@ -9,7 +9,7 @@ namespace LogicaNegocio.InterfacesRepositorio
     public interface IRepositorio <T>
     {
         void Add(T obj);
-        void Remove(T obj);
+        void Remove(int id);
         void Update (T obj);
         List<T> FindAll();
         T FindById(int id);

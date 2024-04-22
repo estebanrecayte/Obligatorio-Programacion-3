@@ -15,6 +15,11 @@ namespace LogicaDatos.Repositorios
             throw new NotImplementedException();
         }
 
+        public Cliente BuscarClientePorNombre(string nombre)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Cliente> FindAll()
         {
             throw new NotImplementedException();
@@ -25,7 +30,7 @@ namespace LogicaDatos.Repositorios
             throw new NotImplementedException();
         }
 
-        public void Remove(Cliente ojt)
+        public void Remove(int id)
         {
             throw new NotImplementedException();
         }

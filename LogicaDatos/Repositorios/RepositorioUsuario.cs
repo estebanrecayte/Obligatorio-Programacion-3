@@ -30,7 +30,7 @@ namespace LogicaDatos.Repositorios
             throw new NotImplementedException();
         }
 
-        public void Remove(Usuario ojt)
+        public void Remove(int id)
         {
             throw new NotImplementedException();
         }
@@ -39,5 +39,7 @@ namespace LogicaDatos.Repositorios
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

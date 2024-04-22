@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria MVC", "Libreria MVC\Libreria MVC.csproj", "{1789BE44-322E-46C0-B260-FE2932042A8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria MVC", "Libreria MVC\Libreria MVC.csproj", "{1789BE44-322E-46C0-B260-FE2932042A8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{6A73E704-1640-499D-AAA5-9978ED3B6E28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{6A73E704-1640-499D-AAA5-9978ED3B6E28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaDatos", "LogicaDatos\LogicaDatos.csproj", "{D61EAD1E-F64C-4FEA-B358-4BD2F5E90B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaDatos", "LogicaDatos\LogicaDatos.csproj", "{D61EAD1E-F64C-4FEA-B358-4BD2F5E90B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaAplicacion", "LogicaAplicacion\LogicaAplicacion.csproj", "{A3389370-1596-45A1-9DEB-563BA449CFB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaAplicacion", "LogicaAplicacion\LogicaAplicacion.csproj", "{A3389370-1596-45A1-9DEB-563BA449CFB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A3389370-1596-45A1-9DEB-563BA449CFB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3389370-1596-45A1-9DEB-563BA449CFB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3389370-1596-45A1-9DEB-563BA449CFB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

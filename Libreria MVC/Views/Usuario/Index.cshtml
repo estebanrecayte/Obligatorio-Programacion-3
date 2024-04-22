@@ -1,14 +1,18 @@
-﻿@model IEnumerable<LogicaNegocio.Dominio.Usuario>
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<LogicaNegocio.Dominio.Usuario>
 
-@{
-    ViewData["Title"] = "Index";
-}
+
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo usuario Administrador</a>
 </p>
+
+<p>
+    <a asp-action="Index" asp-controller="Cliente">Ir al índice de Clientes</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -29,7 +33,7 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
+                    @Html.DisplayFor(modelItem => item.Nombre.Valor)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

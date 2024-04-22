@@ -8,6 +8,6 @@ namespace LogicaAplicacion.InterfacesCasosUso
 {
     public interface ICUBaja<T>
     {
-        void Baja(T obj);
+        void Baja(int id);
     }
 }

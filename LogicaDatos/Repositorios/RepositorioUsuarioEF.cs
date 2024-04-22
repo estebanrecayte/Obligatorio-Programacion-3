@@ -35,15 +35,15 @@ namespace LogicaDatos.Repositorios
 
         }
 
-        public void Remove(Usuario obj)
+        public void Remove(int id)
         {
-            Usuario usuarioABorrar = FindById(obj.Id);
+            Usuario usuarioABorrar = Contexto.Usuarios.Find(id);
             if (usuarioABorrar != null) { 
                 Contexto.Remove(usuarioABorrar);
                 Contexto.SaveChanges();
             }
             else {
-                throw new Exception("No exisate el usuario a borrar");
+                throw new Exception("No existe el usuario a borrar");
             }
         }
 
@@ -58,5 +58,7 @@ namespace LogicaDatos.Repositorios
         {
             return Contexto.Usuarios.FirstOrDefault(u => u.Email == mail);
         }
+
+        
     }
 }

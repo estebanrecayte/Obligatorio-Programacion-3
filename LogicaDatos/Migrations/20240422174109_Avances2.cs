@@ -5,7 +5,7 @@
 namespace LogicaDatos.Migrations
 {
     /// <inheritdoc />
-    public partial class AgregandoTituloTablaArticulos : Migration
+    public partial class Avances2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

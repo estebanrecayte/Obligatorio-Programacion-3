@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.InterfacesCasosUso
 {
-    internal interface ICUModificar<T>
+    public interface ICUModificar<T>
     {
         void Modificar(T obj);
     }

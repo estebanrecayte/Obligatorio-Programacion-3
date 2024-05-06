@@ -21,5 +21,10 @@ namespace LogicaAplicacion.CasosUso
         {
             return Repo.FindAll();
         }
+
+        public Usuario BuscarPorId(int id)
+        {
+            return Repo.FindById(id);
+        }
     }
 }

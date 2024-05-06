@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Dominio;
+using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,10 @@ namespace LogicaDatos.Repositorios
         }
         public void Add(Usuario obj)
         {
+            if (Contexto.Usuarios.Any(u => u.Email == obj.Email))
+            {
+                throw new DatosInvalidosException("Ya existe un usuario con el mismo email");
+            }
             obj.EsValido();
             Contexto.Add(obj);
             Contexto.SaveChanges();

@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaDatos", "LogicaDatos\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaAplicacion", "LogicaAplicacion\LogicaAplicacion.csproj", "{A3389370-1596-45A1-9DEB-563BA449CFB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOs", "DTOs\DTOs.csproj", "{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{7E2272E3-80A3-4A10-8498-015E98BC2929}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D61EAD1E-F64C-4FEA-B358-4BD2F5E90B23} = {D61EAD1E-F64C-4FEA-B358-4BD2F5E90B23}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDA4E9EA-FEB4-4AE5-A9E8-E490F4929FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2272E3-80A3-4A10-8498-015E98BC2929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2272E3-80A3-4A10-8498-015E98BC2929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2272E3-80A3-4A10-8498-015E98BC2929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2272E3-80A3-4A10-8498-015E98BC2929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,8 @@ namespace LogicaNegocio.InterfacesRepositorio
 {
     public interface IRepositorioCliente:IRepositorio<Cliente>
     {
-        Cliente BuscarClientePorNombre(string nombre);
+        List<Cliente> BuscarClientePorNombre(string nombre);
+
+        List<Cliente> ClientesConPedidosMayoresA(double precio);
     }
 }

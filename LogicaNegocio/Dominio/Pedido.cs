@@ -1,31 +1,30 @@
 ﻿using LogicaNegocio.InterfacesDominio;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LogicaNegocio.Dominio
 {
-    public class Pedido:IValidable
+    public abstract class Pedido:IValidable
     {
+        [Key]
         public int Id { get; set; }
-        public static int UltId { get; set; } = 0;
+        [Column(TypeName = "date")]
         public DateTime Fecha { get; set; }
-        public Cliente cliente { get; set; }
-        public List<Linea> Lineas { get; set; } = new List<Linea>();
+        public Cliente Cliente { get; set; }
+        public List<Linea> Lineas { get; set; }
+        [Column(TypeName = "date")]
         public DateTime FechaEntregaPrometida { get; set; }
 
         public static double tasaIVA = 22;
-        
-
-        public Pedido()
-        {
-            Id=UltId++;
-        }
 
         public double CalcularTotalPedido()
         {
+            
             double total = 0;
 
             foreach (var linea in Lineas)
@@ -41,7 +40,7 @@ namespace LogicaNegocio.Dominio
         }
 
 
-        public virtual double CalcularTotalConRecargo() { return 0; }
+        public abstract double CalcularTotalConRecargo();
 
         public void EsValido()
         {

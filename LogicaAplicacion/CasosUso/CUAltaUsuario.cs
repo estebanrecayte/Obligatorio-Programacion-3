@@ -22,6 +22,7 @@ namespace LogicaAplicacion.CasosUso
         public void Alta(UsuarioDTO obj)
         {
             Usuario nuevo = MapperUsuario.ToUsuario(obj);
+            nuevo.SetPassword(obj.Password);
             Repo.Add(nuevo);
         }
     }

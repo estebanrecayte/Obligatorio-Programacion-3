@@ -31,7 +31,7 @@ namespace LogicaNegocio.Dominio
         {
             if (!EsRutValido(Rut))
             {
-                throw new DatosInvalidosException("El RUT debe ser un número de 12 digitos");
+                throw new DatosInvalidosException("El RUT debe ser un numero de 12 digitos");
             }
         }
 

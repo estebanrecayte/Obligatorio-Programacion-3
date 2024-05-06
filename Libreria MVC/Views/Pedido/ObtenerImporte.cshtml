@@ -1,0 +1,22 @@
+﻿@model IEnumerable<LogicaNegocio.Dominio.Pedido>
+
+
+@{
+    ViewData["Title"] = "ObtenerImporte";
+}
+
+<h1>ObtenerImporte</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Pedido" asp-action="ObtenerImporte" method="post">
+            <div class="form-group">
+                <label class="control-label">ID del Pedido:</label>
+                <input type="text" name="id" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+</div>
+<h2>@ViewBag.importeTotal</h2>
+</table>

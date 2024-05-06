@@ -4,10 +4,12 @@ using LogicaAplicacion.CasosUso;
 using LogicaAplicacion.InterfacesCasosUso;
 using LogicaNegocio.Dominio;
 using LogicaNegocio.ExcepcionPropias;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Libreria_MVC.Controllers
 {
+    
     public class UsuarioController : Controller
     {
 
@@ -29,10 +31,19 @@ namespace Libreria_MVC.Controllers
         }
         public IActionResult Index()
         {
-            var rol = HttpContext.Session.GetString("Rol");
-            List<Usuario> usuarios = CUListado.ObtenerListado();
-            ViewBag.Rol = rol;
-            return View(usuarios);
+
+            //if (!string.IsNullOrEmpty(HttpContext.Session.GetString("Rol")))
+            //{
+                var rol = HttpContext.Session.GetString("Rol");
+                List<Usuario> usuarios = CUListado.ObtenerListado();
+                ViewBag.Rol = rol;
+                return View(usuarios);
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+
         }
 
         public IActionResult Logout()
@@ -75,7 +86,7 @@ namespace Libreria_MVC.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Mensaje = "Ocurrió un error inesperado";
+                ViewBag.Mensaje = "Ocurrio un error inesperado";
             }
             return View(vm);
         }
@@ -109,7 +120,7 @@ namespace Libreria_MVC.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.Mensaje = "Ocurrió un error inesperado. El alta no se realizó";
+                ViewBag.Mensaje = "Ocurrio un error inesperado. El alta no se realizo";
             }
             return View();
         }

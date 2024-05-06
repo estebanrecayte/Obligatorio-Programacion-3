@@ -9,6 +9,6 @@ namespace LogicaAplicacion.InterfacesCasosUso
 {
     public interface ICUBuscarClientePorNombre
     {
-        Cliente BuscarPorNombre(string nombre);
+        List<Cliente> BuscarPorNombre(string nombre);
     }
 }

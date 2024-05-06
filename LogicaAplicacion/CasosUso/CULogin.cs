@@ -20,7 +20,7 @@ namespace LogicaAplicacion.CasosUso
         public bool UsuarioCorrecto(string mail, string password)
         {
             Usuario usuarioBuscado = Repo.BuscarUsuarioPorMail(mail);
-            if (usuarioBuscado != null & usuarioBuscado.Password == password)
+            if (usuarioBuscado != null && usuarioBuscado.VerifyPassword(password))
             {
                 return true;
             }

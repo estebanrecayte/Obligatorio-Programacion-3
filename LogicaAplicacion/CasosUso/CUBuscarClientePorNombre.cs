@@ -17,7 +17,7 @@ namespace LogicaAplicacion.CasosUso
         {
             Repo = repo;
         }
-        public Cliente BuscarPorNombre(string nombre)
+        public List<Cliente> BuscarPorNombre(string nombre)
         {
             return Repo.BuscarClientePorNombre(nombre);
         }

@@ -5,16 +5,21 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using LogicaNegocio.ExcepcionPropias;
+using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using System.Security.Cryptography;
+using LogicaAplicacion.CasosUso;
 
 namespace Libreria_MVC.Controllers
 {
     public class HomeController : Controller
     {
-       
+
         public ICULogin CULogin { get; set; }
 
 
-        public HomeController (ICULogin cuLogin)
+        public HomeController(ICULogin cuLogin)
         {
 
             CULogin = cuLogin;
@@ -38,7 +43,8 @@ namespace Libreria_MVC.Controllers
         {
             try
             {
-                
+           
+
                 bool isValid = CULogin.UsuarioCorrecto(usuario.Mail, usuario.Password);
 
                 if (isValid)
@@ -59,6 +65,20 @@ namespace Libreria_MVC.Controllers
             return View(usuario);
         }
 
+        private string GetSHA256(string input)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
 
+                for (int i = 0; i < data.Length; i++)
+                {
+                    builder.Append(data[i].ToString("x2"));
+                }
+
+                return builder.ToString();
+            }
+        }
     }
 }

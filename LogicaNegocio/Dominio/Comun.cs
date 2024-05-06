@@ -10,13 +10,14 @@ namespace LogicaNegocio.Dominio
     {
         public override double CalcularTotalConRecargo()
         {
+           
             double recargo = 0;
 
-            int distanciaEntregaKm = cliente.DistanciaKm;
+            int distanciaEntregaKm = Cliente.DistanciaKm;
 
             if (distanciaEntregaKm > 100)
             {
-                recargo = CalcularTotalPedido() * 0.05; // 5% del total del pedido
+                recargo = CalcularTotalPedido() * 0.05;
             }
 
             double totalPedidoConRecargo = CalcularTotalPedido() + recargo;

@@ -25,17 +25,22 @@ namespace LogicaNegocio.Dominio
         {
             if (string.IsNullOrEmpty(Nombre))
             {
-                throw new DatosInvalidosException("El nombre del artículo no puede estar vacío.");
+                throw new DatosInvalidosException("No puede estar vacio el nombre del articulo");
+            }
+
+            if (Nombre.Length < 10 || Nombre.Length > 200)
+            {
+                throw new DatosInvalidosException("El articulo debe tener entre 10 y 200 de nombre");
             }
 
             if (string.IsNullOrEmpty(Descripcion) || Descripcion.Length < 5)
             {
-                throw new DatosInvalidosException("La descripción del artículo debe tener al menos 5 caracteres.");
+                throw new DatosInvalidosException("La descripcion del articulo no puede estar vacia debe tener al menos 5 caracteres");
             }
 
             if (Codigo <= 0)
             {
-                throw new DatosInvalidosException("El código del artículo debe ser un número positivo.");
+                throw new DatosInvalidosException("El codigo no puede ser negativo");
             }
 
             int contadorDigitos = 0;
@@ -49,17 +54,17 @@ namespace LogicaNegocio.Dominio
 
             if (contadorDigitos != 13)
             {
-                throw new DatosInvalidosException("El código del artículo debe tener 13 dígitos.");
+                throw new DatosInvalidosException("El codigo del artículo debe tener 13 digitos");
             }
 
             if (Precio <= 0)
             {
-                throw new DatosInvalidosException("El precio del artículo debe ser mayor que cero.");
+                throw new DatosInvalidosException("El precio del artículo debe ser mayor que cero");
             }
 
             if (Stock < 0)
             {
-                throw new DatosInvalidosException("El stock del artículo no puede ser negativo.");
+                throw new DatosInvalidosException("El stock del artículo no puede ser negativo");
             }
         }
     }

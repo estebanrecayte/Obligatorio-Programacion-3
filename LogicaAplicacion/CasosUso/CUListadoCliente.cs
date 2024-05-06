@@ -21,5 +21,7 @@ namespace LogicaAplicacion.CasosUso
         {
             return Repo.FindAll();
         }
+
+        
     }
 }

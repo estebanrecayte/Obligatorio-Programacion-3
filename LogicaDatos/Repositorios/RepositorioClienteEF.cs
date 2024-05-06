@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Dominio;
+using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,6 +22,15 @@ namespace LogicaDatos.Repositorios
         }
         public void Add(Cliente obj)
         {
+            if (Contexto.Clientes.Any(c => c.RazonSocial == obj.RazonSocial))
+            {
+                throw new DatosInvalidosException("Ya existe un cliente con la misma razon social");
+            }
+
+            if (Contexto.Clientes.Any(c => c.Rut == obj.Rut))
+            {
+                throw new DatosInvalidosException("Ya existe un cliente con el mismo RUT");
+            }
             obj.EsValido();
             Contexto.Clientes.Add(obj);
             Contexto.SaveChanges();
@@ -57,9 +67,35 @@ namespace LogicaDatos.Repositorios
             Contexto.SaveChanges();
         }
 
-        public Cliente BuscarClientePorNombre(string nombre)
+        public List<Cliente> BuscarClientePorNombre(string nombre)
         {
-            return Contexto.Clientes.FirstOrDefault(cliente => cliente.RazonSocial == nombre);
+            return Contexto.Clientes.Where(cliente => cliente.RazonSocial.Contains(nombre)).ToList();
         }
+
+        public List<Cliente> ClientesConPedidosMayoresA(double precio)
+        {
+            // Obtener todos los pedidos y luego filtrar en memoria
+            var pedidos = Contexto.Pedidos
+                .Include(p => p.Cliente)   // Incluir el cliente asociado a cada pedido
+                .Include(p => p.Lineas)    // Incluir las líneas de pedido asociadas a cada pedido
+                .ToList();
+
+            // Filtrar en memoria los pedidos cuyo total con recargo sea mayor que el precio dado
+            var PedidosMayoresA = pedidos
+                .Where(p => p.CalcularTotalConRecargo() > precio)
+                .Select(p => p.Cliente.Id)
+                .Distinct()
+                .ToList();
+
+
+            // Se busca en la base de datos clientes que tengan mismo id encontrado en la anterior
+            var clientesConPedidosMayoresA = Contexto.Clientes
+                .Where(cliente => PedidosMayoresA.Contains(cliente.Id))
+                .ToList();
+
+            return clientesConPedidosMayoresA;
+
+        }
+
     }
 }

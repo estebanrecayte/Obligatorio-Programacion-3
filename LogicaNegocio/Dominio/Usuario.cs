@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -25,12 +26,14 @@ namespace LogicaNegocio.Dominio
         public NombreUsuario Nombre { get; set; }
         public string Apellido { get; set; }
         public string Password { get; set; }
+        public string PasswordHash { get; set; }
+        public string PasswordSalt { get; set; }
 
         public Usuario()
         {
           
         }
-
+        
         public void EsValido()
         {
             if (!string.IsNullOrEmpty(Nombre.Valor))
@@ -74,6 +77,26 @@ namespace LogicaNegocio.Dominio
                 }
             }
 
+
+        }
+        public void SetPassword(string password)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                PasswordSalt = Convert.ToBase64String(hmac.Key);
+                PasswordHash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
+            }
+        }
+
+        public bool VerifyPassword(string password)
+        {
+            using (var hmac = new HMACSHA512(Convert.FromBase64String(PasswordSalt)))
+            {
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var computedHashBase64 = Convert.ToBase64String(computedHash);
+                return PasswordHash == computedHashBase64;
+            }
         }
     }
+
 }

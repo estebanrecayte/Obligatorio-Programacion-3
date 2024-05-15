@@ -57,9 +57,13 @@ namespace Libreria_MVC.Controllers
                     ViewBag.Mensaje = "Credenciales incorrectas";
                 }
             }
-            catch (Exception)
+            catch (ExcepcionPropiaException ex)
             {
-                ViewBag.Mensaje = "Ocurrió un error inesperado";
+                ViewBag.Mensaje = ex.Message;
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Mensaje = "Ocurrio un error inesperado";
             }
 
             return View(usuario);

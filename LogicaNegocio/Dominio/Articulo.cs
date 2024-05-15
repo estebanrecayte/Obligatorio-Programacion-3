@@ -15,6 +15,7 @@ namespace LogicaNegocio.Dominio
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        [StringLength(13, MinimumLength = 13, ErrorMessage = "El codigo del artículo debe tener 13 digitos")]
         public long Codigo { get; set; }
         public double Precio { get; set; }
         public int Stock { get; set; }
@@ -30,7 +31,7 @@ namespace LogicaNegocio.Dominio
 
             if (Nombre.Length < 10 || Nombre.Length > 200)
             {
-                throw new DatosInvalidosException("El articulo debe tener entre 10 y 200 de nombre");
+                throw new DatosInvalidosException("El nombre del articulo debe tener entre 10 y 200 caracteres");
             }
 
             if (string.IsNullOrEmpty(Descripcion) || Descripcion.Length < 5)
@@ -62,7 +63,7 @@ namespace LogicaNegocio.Dominio
                 throw new DatosInvalidosException("El precio del artículo debe ser mayor que cero");
             }
 
-            if (Stock < 0)
+            if (Stock <= 0)
             {
                 throw new DatosInvalidosException("El stock del artículo no puede ser negativo");
             }

@@ -4,6 +4,7 @@ using LogicaDatos.Repositorios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogicaDatos.Migrations
 {
     [DbContext(typeof(LibreriaContext))]
-    partial class LibreriaContextModelSnapshot : ModelSnapshot
+    [Migration("20240511163726_AgregarPropiedadEstadoEnPedido")]
+    partial class AgregarPropiedadEstadoEnPedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +28,6 @@ namespace LogicaDatos.Migrations
             modelBuilder.Entity("LogicaNegocio.Dominio.Articulo", b =>
                 {
                     b.Property<long>("Codigo")
-                        .HasMaxLength(13)
                         .HasColumnType("bigint");
 
                     b.Property<string>("Descripcion")
@@ -44,7 +46,7 @@ namespace LogicaDatos.Migrations
 
                     b.HasKey("Codigo");
 
-                    b.ToTable("Articulos", (string)null);
+                    b.ToTable("Articulos");
                 });
 
             modelBuilder.Entity("LogicaNegocio.Dominio.Cliente", b =>
@@ -67,7 +69,7 @@ namespace LogicaDatos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("LogicaNegocio.Dominio.Linea", b =>
@@ -88,7 +90,7 @@ namespace LogicaDatos.Migrations
 
                     b.HasIndex("ArticuloId");
 
-                    b.ToTable("Lineas", (string)null);
+                    b.ToTable("Lineas");
                 });
 
             modelBuilder.Entity("LogicaNegocio.Dominio.Pedido", b =>
@@ -123,7 +125,7 @@ namespace LogicaDatos.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Pedidos", (string)null);
+                    b.ToTable("Pedidos");
 
                     b.HasDiscriminator<string>("TipoPedido").HasValue("Pedido");
 
@@ -160,7 +162,7 @@ namespace LogicaDatos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("LogicaNegocio.Dominio.Comun", b =>
@@ -179,7 +181,7 @@ namespace LogicaDatos.Migrations
 
             modelBuilder.Entity("LogicaNegocio.Dominio.Cliente", b =>
                 {
-                    b.OwnsOne("LogicaNegocio.Dominio.Cliente.Direccion#LogicaNegocio.ValueObjects.DireccionCliente", "Direccion", b1 =>
+                    b.OwnsOne("LogicaNegocio.ValueObjects.DireccionCliente", "Direccion", b1 =>
                         {
                             b1.Property<int>("ClienteId")
                                 .HasColumnType("int");
@@ -201,7 +203,7 @@ namespace LogicaDatos.Migrations
 
                             b1.HasKey("ClienteId");
 
-                            b1.ToTable("Clientes", (string)null);
+                            b1.ToTable("Clientes");
 
                             b1.WithOwner()
                                 .HasForeignKey("ClienteId");
@@ -243,7 +245,7 @@ namespace LogicaDatos.Migrations
 
             modelBuilder.Entity("LogicaNegocio.Dominio.Usuario", b =>
                 {
-                    b.OwnsOne("LogicaNegocio.Dominio.Usuario.Nombre#LogicaNegocio.ValueObjects.NombreUsuario", "Nombre", b1 =>
+                    b.OwnsOne("LogicaNegocio.ValueObjects.NombreUsuario", "Nombre", b1 =>
                         {
                             b1.Property<int>("UsuarioId")
                                 .HasColumnType("int");
@@ -255,7 +257,7 @@ namespace LogicaDatos.Migrations
 
                             b1.HasKey("UsuarioId");
 
-                            b1.ToTable("Usuarios", (string)null);
+                            b1.ToTable("Usuarios");
 
                             b1.WithOwner()
                                 .HasForeignKey("UsuarioId");

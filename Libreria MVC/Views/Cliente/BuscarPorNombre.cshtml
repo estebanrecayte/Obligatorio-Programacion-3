@@ -4,7 +4,7 @@
     ViewData["Title"] = "BuscarPorNombre";
 }
 
-<h1>BuscarPorNombre</h1>
+<h1>Buscador de cliente</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -37,7 +37,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DistanciaKm)
             </th>
-            <th></th>
+            
         </tr>
     </thead>
     <tbody>
@@ -55,12 +55,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DistanciaKm)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id=item.Id}) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
         </tr>
 }
     </tbody>
 </table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

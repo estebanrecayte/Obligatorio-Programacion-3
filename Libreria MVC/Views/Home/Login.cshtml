@@ -1,7 +1,7 @@
 ﻿@model LoginViewModel
 
 <h2>Iniciar Sesión</h2>
-<span>@ViewBag.Mensaje</span>
+
 
 <form asp-action="Login" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -20,3 +20,5 @@
 
     <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 </form>
+
+<span>@ViewBag.Mensaje</span>

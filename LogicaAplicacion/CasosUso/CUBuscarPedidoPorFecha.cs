@@ -9,22 +9,17 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso
 {
-    public class CUListadoPedidos : ICUListado<Pedido>
+    public class CUBuscarPedidoPorFecha:ICUBuscarPedidoPorFecha
     {
         public IRepositorioPedido Repo { get; set; }
-        public CUListadoPedidos(IRepositorioPedido repo)
+        public CUBuscarPedidoPorFecha(IRepositorioPedido repo)
         {
             Repo = repo;
         }
-        public List<Pedido> ObtenerListado()
-        {
-            return Repo.FindAll();
-        }
 
-        public Pedido BuscarPorId(int id)
+        public List<Pedido> FindByFechaEmision(DateTime fechaEmision)
         {
-            return Repo.FindById(id);
+            return Repo.FindByFechaEmision(fechaEmision);
         }
-        
     }
 }

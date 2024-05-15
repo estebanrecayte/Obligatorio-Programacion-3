@@ -18,7 +18,6 @@ namespace LogicaDatos.Repositorios
         public DbSet<Express> Express { get; set; }
         public DbSet<Comun> Comun { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-
         public LibreriaContext(DbContextOptions options) : base(options) 
         {
         }
@@ -63,13 +62,15 @@ namespace LogicaDatos.Repositorios
                 .HasKey(l => new { l.PedidoId, l.ArticuloId }); // definoo clave foranea
 
             modelBuilder.Entity<Linea>().HasOne(l => l.Pedido)  // vinculo navegacion de linea a pedido, ida y vuelta. 1 pedido puede tener muchas lineas. con la clave
-                                                                // foranea vinculo cada linea a un pedido especifico
+                                         // foranea vinculo cada linea a un pedido especifico
                   .WithMany(p => p.Lineas)
                   .HasForeignKey(l => l.PedidoId);
             
             modelBuilder.Entity<Linea>().HasOne(l => l.Articulo)  // cada linea esta vinculada a un unico articulo, la clave ArticuloId me ayuda a eso
                   .WithMany()  
-                  .HasForeignKey(l => l.ArticuloId);  
+                  .HasForeignKey(l => l.ArticuloId);
+
+           
         }
 
 

@@ -15,9 +15,8 @@ namespace DTOs
             Comun pComun = new Comun
             {
                 Fecha = dto.Fecha,
-                Cliente = dto.Cliente,
-                Lineas = dto.Lineas,
-                FechaEntregaPrometida = dto.FechaEntregaPrometida
+                FechaEntregaPrometida = dto.FechaEntregaPrometida,
+                Estado = dto.Estado,
             };
 
             return pComun;
@@ -28,12 +27,13 @@ namespace DTOs
             Express pExpress = new Express
             {
                 Fecha = dto.Fecha,
-                Cliente = dto.Cliente,
-                Lineas = dto.Lineas,
-                FechaEntregaPrometida = dto.FechaEntregaPrometida
+                FechaEntregaPrometida = dto.FechaEntregaPrometida, 
+                Estado = dto.Estado,
             };
 
             return pExpress;
         }
+
+        
     }
 }

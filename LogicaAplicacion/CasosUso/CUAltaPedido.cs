@@ -1,6 +1,7 @@
 ﻿using DTOs;
 using LogicaAplicacion.InterfacesCasosUso;
 using LogicaNegocio.Dominio;
+using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
@@ -13,30 +14,83 @@ namespace LogicaAplicacion.CasosUso
 {
     public class CUAltaPedido : ICUAlta<PedidoDTO>
     {
-        public IRepositorioPedido Repo { get; set; }
+        public IRepositorioPedido RepoPedidos { get; set; }
+        public IRepositorioArticulo RepoArticulos { get; set; }
+        public IRepositorioCliente RepoClientes { get; set; }
 
-        public CUAltaPedido(IRepositorioPedido repo)
+        public CUAltaPedido(IRepositorioPedido repoPedidos, IRepositorioArticulo repoArticulos, IRepositorioCliente repoClientes)
         {
-            Repo = repo;
+            RepoPedidos = repoPedidos;
+            RepoArticulos = repoArticulos;
+            RepoClientes = repoClientes;
+
         }
         public void Alta(PedidoDTO obj)
         {
-            Pedido nuevoPedido;
+            Articulo articulo = RepoArticulos.GetByCodigo(obj.CodigoProducto);
+            Cliente nuevoCliente = RepoClientes.FindById(obj.IdCliente);
 
-            if (obj.TipoPedido == "Comun")
+            if (articulo.Stock >= obj.CantidadProducto)
             {
-                nuevoPedido = MapperPedido.ToPedidoComun(obj);
-            }
-            else if (obj.TipoPedido == "Express")
-            {
-                nuevoPedido = MapperPedido.ToPedidoExpress(obj);
+                Pedido nuevoPedido;
+                Linea nuevaLinea = new Linea
+                {
+                    Articulo = articulo,
+                    PrecioUnitario = articulo.Precio,
+                    Cantidad = obj.CantidadProducto,
+                    ArticuloId = obj.CodigoProducto,
+
+                };
+                
+
+                if (obj.TipoPedido == "Comun")
+                {
+                    if (obj.FechaEntregaPrometida < DateTime.Now.AddDays(7))
+                    {
+                        throw new ExcepcionPropiaException("La fecha de entrega prometida para pedidos comunes no puede ser menor a una semana");
+                    }
+                    nuevoPedido = MapperPedido.ToPedidoComun(obj);
+                    
+                    
+
+                }
+                else if (obj.TipoPedido == "Express")
+                {
+
+                    if (obj.FechaEntregaPrometida > DateTime.Now.AddDays(5)) 
+                    {
+                        throw new ExcepcionPropiaException("La fecha de entrega prometida para pedidos express no puede ser superior a 5 días");
+                    }
+                    nuevoPedido = MapperPedido.ToPedidoExpress(obj);
+
+
+                }
+                else
+                {
+                    throw new ExcepcionPropiaException("Tipo de pedido no válido");
+                }
+
+                if (nuevoPedido != null)
+                {
+                    nuevoPedido.Cliente = nuevoCliente;
+                    nuevoPedido.Lineas = new List<Linea>();
+                    nuevoPedido.Lineas.Add(nuevaLinea);
+                    nuevoPedido.Precio = nuevoPedido.CalcularTotalConRecargo();
+                    RepoPedidos.Add(nuevoPedido);
+                }
+                else
+                {
+                    throw new ExcepcionPropiaException("No se pudo hacer el alta de pedido, porque el cliente no existe");
+                }
             }
             else
             {
-                throw new ArgumentException("Tipo de pedido no válido");
+                throw new ExcepcionPropiaException("No hay suficiente stock del articulo seleccionado");
             }
 
-            Repo.Add(nuevoPedido);
+
+
+
         }
     }
 }

@@ -19,6 +19,10 @@ namespace WebAPI
             builder.Services.AddScoped<ICUAlta<ArticuloDTO>, CUAltaArticulo>();
             builder.Services.AddScoped<ICUListado<Articulo>, CUListadoArticulo>();
 
+            builder.Services.AddScoped<IRepositorioPedido, RepositorioPedidoEF>();
+            builder.Services.AddScoped<ICUObtenerListadoAnulados, CUObtenerListadoAnulados>();
+
+            
             string strCon = builder.Configuration.GetConnectionString("MiBase");
 
             builder.Services.AddDbContext<LibreriaContext>(options => options.UseSqlServer(strCon));

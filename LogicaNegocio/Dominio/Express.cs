@@ -8,7 +8,7 @@ namespace LogicaNegocio.Dominio
 {
     public class Express : Pedido
     {
-        public static int PlazoMaximoEntrega { get; } = 5;
+        
 
         public override double CalcularTotalConRecargo()
         {
@@ -17,11 +17,11 @@ namespace LogicaNegocio.Dominio
 
             if (EsEntregaMismoDia())
             {
-                recargo = CalcularTotalPedido() * 0.15;
+                recargo = CalcularTotalPedido() * Parametro.RecargoEntregaMismoDia;
             }
             else if (EsEntregaDentroPlazo())
             {
-                recargo = CalcularTotalPedido() * 0.10;
+                recargo = CalcularTotalPedido() * Parametro.RecargoExpressPorDefecto;
             }
 
             double totalPedidoConRecargo = CalcularTotalPedido() + recargo;
@@ -41,7 +41,7 @@ namespace LogicaNegocio.Dominio
 
             TimeSpan diferencia = FechaEntregaPrometida.Date - fechaActual;
 
-            return diferencia.Days <= PlazoMaximoEntrega;
+            return diferencia.Days <= Parametro.PlazoMaximoEntrega;
         }
     }
 }

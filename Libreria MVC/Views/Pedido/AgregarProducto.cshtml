@@ -1,0 +1,40 @@
+﻿@model AgregarProductoViewModel
+@{
+    ViewData["Title"] = "Agregar Producto a Pedido";
+}
+
+<h1>Agregar Producto a Pedido</h1>
+
+<div>
+    <h4>Agregar Producto</h4>
+    <hr />
+    <form asp-action="AgregarProducto" asp-controller="Pedido" method="post">
+        
+        <div class="form-group">
+            <label>Seleccionar Artículo:</label>
+            <select asp-for="IdArticulo" class="form-control">
+                <option value="">Seleccione un artículo</option>
+                @foreach (var articulo in ViewBag.Articulos)
+                {
+                    <option value="@articulo.Codigo">@articulo.Nombre - (@articulo.Codigo)</option>
+                }
+            </select>
+            <span asp-validation-for="IdArticulo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Cantidad:</label>
+            <input type="number" asp-for="Cantidad" class="form-control" />
+            <span asp-validation-for="Cantidad" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Agregar Producto" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<p>
+    <a asp-action="Index" asp-controller="Pedido">Volver</a>
+</p>
+

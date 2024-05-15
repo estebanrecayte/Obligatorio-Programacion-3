@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Dominio;
+using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,7 +37,7 @@ namespace LogicaDatos.Repositorios
             }
             else
             {
-                throw new Exception("La linea no existe");
+                throw new ExcepcionPropiaException("La linea no existe");
             }
         }
 

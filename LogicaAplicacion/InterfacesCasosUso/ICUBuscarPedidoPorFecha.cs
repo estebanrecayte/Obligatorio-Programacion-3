@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaNegocio.InterfacesRepositorio
+namespace LogicaAplicacion.InterfacesCasosUso
 {
-    public interface IRepositorioArticulo:IRepositorio<Articulo>
+    public interface ICUBuscarPedidoPorFecha
     {
-        Articulo GetByCodigo(long codigo);
+        List<Pedido> FindByFechaEmision(DateTime fechaEmision);
     }
 }

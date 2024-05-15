@@ -85,10 +85,10 @@ namespace Libreria_MVC.Controllers
 
                     CUAlta.Alta(dto);
 
-                    return RedirectToAction("Index", "Usuario");
+                    return RedirectToAction("Index");
                 }
             }
-            catch (DatosInvalidosException ex)
+            catch (ExcepcionPropiaException ex)
             {
                 ViewBag.Mensaje = ex.Message;
             }

@@ -1,4 +1,5 @@
 ﻿using LogicaAplicacion.InterfacesCasosUso;
+using LogicaDatos.Repositorios;
 using LogicaNegocio.Dominio;
 using LogicaNegocio.InterfacesRepositorio;
 using System;
@@ -9,22 +10,16 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso
 {
-    public class CUListadoPedidos : ICUListado<Pedido>
+    public class CUObtenerListadoAnulados : ICUObtenerListadoAnulados
     {
         public IRepositorioPedido Repo { get; set; }
-        public CUListadoPedidos(IRepositorioPedido repo)
+        public CUObtenerListadoAnulados(IRepositorioPedido repo)
         {
             Repo = repo;
         }
-        public List<Pedido> ObtenerListado()
+        public List<Pedido> PedidosAnulados()
         {
-            return Repo.FindAll();
+            return Repo.PedidosAnulados();
         }
-
-        public Pedido BuscarPorId(int id)
-        {
-            return Repo.FindById(id);
-        }
-        
     }
 }

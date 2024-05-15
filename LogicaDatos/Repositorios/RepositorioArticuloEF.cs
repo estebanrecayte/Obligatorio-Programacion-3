@@ -25,6 +25,10 @@ namespace LogicaDatos.Repositorios
             {
                 throw new DatosInvalidosException("Ya existe un articulo con el mismo codigo");
             }
+            else if (Contexto.Articulos.Any(a => a.Nombre == obj.Nombre))
+            {
+                throw new DatosInvalidosException("Ya existe un articulo con el mismo nombre");
+            }
             obj.EsValido();
             Contexto.Add(obj);
             Contexto.SaveChanges();
@@ -40,7 +44,7 @@ namespace LogicaDatos.Repositorios
             }
             else
             {
-                throw new Exception("El articulo no existe");
+                throw new ExcepcionPropiaException("El articulo no existe");
             }
         }
 
@@ -64,6 +68,11 @@ namespace LogicaDatos.Repositorios
         public Articulo FindById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public Articulo GetByCodigo(long codigo)
+        {
+            return Contexto.Articulos.FirstOrDefault(a => a.Codigo == codigo);
         }
     }
 }

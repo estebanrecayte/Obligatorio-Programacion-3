@@ -9,22 +9,17 @@ using System.Threading.Tasks;
 
 namespace LogicaAplicacion.CasosUso
 {
-    public class CUListadoPedidos : ICUListado<Pedido>
+    public class CUBuscarClientePorId : ICUBuscarPorId<Cliente>
     {
-        public IRepositorioPedido Repo { get; set; }
-        public CUListadoPedidos(IRepositorioPedido repo)
+        public IRepositorioCliente Repo { get; set; }
+
+        public CUBuscarClientePorId(IRepositorioCliente repo)
         {
             Repo = repo;
         }
-        public List<Pedido> ObtenerListado()
-        {
-            return Repo.FindAll();
-        }
-
-        public Pedido BuscarPorId(int id)
+        public Cliente Buscar(int id)
         {
             return Repo.FindById(id);
         }
-        
     }
 }

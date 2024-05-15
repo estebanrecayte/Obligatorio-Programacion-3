@@ -7,13 +7,11 @@ namespace Libreria_MVC.Models
     {
         public DateTime FechaEntregaPrometida { get; set; }
         public int IdClienteSeleccionado { get; set; }
-        public List<Cliente> Clientes { get; set; }
+        public List<Cliente>? Clientes { get; set; }
         public long CodigoArticuloSeleccionado { get; set; }
-        public List<Articulo> Articulos { get; set; }
+        public List<Articulo>? Articulos { get; set; }
         public int CantidadSeleccionada { get; set; }
-        public List<Linea> Lineas { get; set; }
         public string TipoPedido { get; set; }
-        
 
     }
 }

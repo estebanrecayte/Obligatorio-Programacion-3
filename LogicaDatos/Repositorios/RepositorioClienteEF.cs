@@ -56,7 +56,7 @@ namespace LogicaDatos.Repositorios
             }
             else
             {
-                throw new Exception("No existe el cliente a borrar");
+                throw new ExcepcionPropiaException("No existe el cliente a borrar");
             }
         }
 

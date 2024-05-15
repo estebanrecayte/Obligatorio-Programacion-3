@@ -11,12 +11,11 @@ namespace DTOs
     public class PedidoDTO
     {
         public DateTime Fecha { get; set; }
-        public Cliente Cliente { get; set; }
-        public int IdCliente { get; set; }
-        public List<Linea> Lineas { get; set; }
         public DateTime FechaEntregaPrometida { get; set; }
-
+        public int IdCliente { get; set; }
         public long CodigoProducto { get; set; }
+        public int CantidadProducto { get; set; }
         public string TipoPedido { get; set; }
+        public bool Estado { get; set; }
     }
 }

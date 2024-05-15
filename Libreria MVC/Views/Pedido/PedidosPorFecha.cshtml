@@ -1,0 +1,66 @@
+﻿@model IEnumerable<LogicaNegocio.Dominio.Pedido>
+
+@{
+    ViewData["Title"] = "PedidosPorFecha";
+}
+
+<h1>PedidosPorFecha</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Pedido" asp-action="PedidosPorFecha" method="post">
+            <div class="form-group">
+                <label class="control-label">Fecha de emisión:</label>
+                <input type="date" name="fechaEmision" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+</div>
+<span>@ViewBag.Mensaje</span>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEntregaPrometida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEntregaPrometida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    <form asp-action="AnularPedido" asp-controller="Pedido" method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-primary">Anular Pedido</button>
+                    </form>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

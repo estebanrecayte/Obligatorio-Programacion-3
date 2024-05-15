@@ -48,12 +48,13 @@ namespace LogicaDatos.Repositorios
                 Contexto.SaveChanges();
             }
             else {
-                throw new Exception("No existe el usuario a borrar");
+                throw new ExcepcionPropiaException("No existe el usuario a borrar");
             }
         }
 
         public void Update(Usuario obj)
         {
+            
             obj.EsValido();
             Contexto.Usuarios.Update(obj);
             Contexto.SaveChanges();

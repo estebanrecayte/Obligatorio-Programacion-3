@@ -18,6 +18,10 @@ builder.Services.AddScoped<ICUBaja<Usuario>, CUBajaUsuario>();
 builder.Services.AddScoped<ICUBaja<Cliente>, CUBajaCliente>();
 builder.Services.AddScoped<ICUBaja<Pedido>, CUBajaPedido>();
 
+builder.Services.AddScoped<ICUModificar<Pedido>, CUModificarPedido>();
+
+
+builder.Services.AddScoped<ICUBuscarArticuloPorCodigo, CUBuscarArticuloPorCodigo>();
 builder.Services.AddScoped<ICUBuscarPorId<Usuario>, CUBuscarUsuarioPorId>();
 builder.Services.AddScoped<ICUBuscarPorId<Pedido>, CUBuscarPedidoPorId>();
 builder.Services.AddScoped<ICUBuscarClientePorNombre, CUBuscarClientePorNombre>();
@@ -38,6 +42,9 @@ builder.Services.AddScoped<ICUListado<Cliente>, CUListadoCliente>();
 builder.Services.AddScoped<ICUListado<Pedido>, CUListadoPedidos>();
 builder.Services.AddScoped<ICUListado<Articulo>, CUListadoArticulo>();
 builder.Services.AddScoped<ICUListado<Linea>, CUListadoLinea>();
+builder.Services.AddScoped<ICUObtenerListadoAnulados, CUObtenerListadoAnulados>();
+
+builder.Services.AddScoped<ICUBuscarPedidoPorFecha, CUBuscarPedidoPorFecha>();
 
 builder.Services.AddScoped<ICULogin , CULogin>();
 

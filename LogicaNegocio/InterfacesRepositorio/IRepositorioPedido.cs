@@ -10,5 +10,9 @@ namespace LogicaNegocio.InterfacesRepositorio
     public interface IRepositorioPedido : IRepositorio<Pedido>
     {
         double ObtenerImporteTotalPedido(int id);
+
+        List<Pedido> FindByFechaEmision(DateTime fechaEmision);
+
+        List<Pedido> PedidosAnulados();
     }
 }

@@ -4,10 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Todos los pedidos</h1>
 
 <p>
-    <a asp-action="ObtenerImporte" asp-controller="Pedido">Buscar importe por ID de cliente</a>
+    <a asp-action="Create" asp-controller="Pedido">Crear un nuevo pedido</a>
+</p>
+<p>
+    <a asp-action="PedidosPorFecha" asp-controller="Pedido">Buscar pedido por fecha de emision</a>
+</p>
+<p>
+    <a asp-action="ObtenerImporte" asp-controller="Pedido">Buscar importe por ID de pedido</a>
 </p>
 <table class="table">
     <thead>
@@ -25,9 +31,13 @@
                 Razon Social
             </th>
             <th>
-                Monto Total
+                Costo Total
+            </th>
+            <th>
+                Estado
             </th>
             <th></th>
+      
         </tr>
     </thead>
     <tbody>
@@ -37,21 +47,35 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
+                    @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaEntregaPrometida)
+                    @Html.DisplayFor(modelItem => item.FechaEntregaPrometida)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
-            </td>
-                
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+                <td>
+                    @if (item.Cliente != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
+                    }
+                    else
+                    {
+                        <span>Cliente no especificado</span>
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    <a asp-action="AgregarProducto" asp-controller="Pedido" asp-route-id="@item.Id">Agregar Producto</a> |  
+                </td>
         </tr>
 }
     </tbody>
 </table>
+<div>
+    <a asp-action="Index" asp-controller="Usuario">Back to List</a>
+</div>

@@ -28,6 +28,7 @@ namespace Libreria_MVC.Controllers
             CUBuscar = cUBuscar;
             CUModificar = cUModificar;
             CUBaja = cUBaja;
+
         }
         public IActionResult Index()
         {
@@ -80,7 +81,7 @@ namespace Libreria_MVC.Controllers
                     return RedirectToAction("Index", "Usuario");
                 }
             }
-            catch (DatosInvalidosException ex)
+            catch (ExcepcionPropiaException ex)
             {
                 ViewBag.Mensaje = ex.Message;
             }
@@ -94,14 +95,29 @@ namespace Libreria_MVC.Controllers
         // GET: AutoresController/Details/5
         public ActionResult Details(int id)
         {
-            Usuario a = CUBuscar.Buscar(id);
-            return View(a);
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("Rol")))
+            {
+                Usuario a = CUBuscar.Buscar(id);
+                return View(a);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
+      
         public ActionResult Edit(int id)
-        {
-            Usuario u = CUBuscar.Buscar(id);
-            return View(u);
+            {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("Rol")))
+            {
+                Usuario u = CUBuscar.Buscar(id);
+                return View(u);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         // POST: TemasController/Edit/5
@@ -114,9 +130,9 @@ namespace Libreria_MVC.Controllers
                 CUModificar.Modificar(u);
                 return RedirectToAction(nameof(Index));
             }
-            catch (DatosInvalidosException e)
+            catch (ExcepcionPropiaException ex)
             {
-                ViewBag.Mensaje = e.Message;
+                ViewBag.Mensaje = ex.Message;
             }
             catch (Exception e)
             {
@@ -127,8 +143,15 @@ namespace Libreria_MVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            Usuario u = CUBuscar.Buscar(id);
-            return View(u);
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("Rol")))
+            {
+                Usuario u = CUBuscar.Buscar(id);
+                return View(u);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         // POST: TemasController/Delete/5
@@ -141,11 +164,16 @@ namespace Libreria_MVC.Controllers
                 CUBaja.Baja(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception e)
+            catch (ExcepcionPropiaException e)
             {
                 ViewBag.Mensaje = e.Message;
-                return View();
+                
             }
+            catch (Exception ex) {
+                ViewBag.Mensaje = "Ocurrio un error inesperado";
+                
+            }
+            return View();
         }
     }
 }

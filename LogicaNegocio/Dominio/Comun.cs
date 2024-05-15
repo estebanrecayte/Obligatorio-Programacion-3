@@ -15,9 +15,9 @@ namespace LogicaNegocio.Dominio
 
             int distanciaEntregaKm = Cliente.DistanciaKm;
 
-            if (distanciaEntregaKm > 100)
+            if (distanciaEntregaKm > Parametro.DistanciaLimiteComun)
             {
-                recargo = CalcularTotalPedido() * 0.05;
+                recargo = CalcularTotalPedido() * Parametro.RecargoComunPorDefecto;
             }
 
             double totalPedidoConRecargo = CalcularTotalPedido() + recargo;

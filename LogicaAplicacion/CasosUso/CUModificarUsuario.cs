@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.InterfacesCasosUso;
 using LogicaNegocio.Dominio;
+using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,13 @@ namespace LogicaAplicacion.CasosUso
         }
         public void Modificar(Usuario obj)
         {
+            Usuario usuarioRepo = Repo.FindById(obj.Id);
+            if (usuarioRepo == null)
+            {
+                throw new ExcepcionPropiaException("El usuario no existe en el repositorio.");
+            }
+            obj.Email = usuarioRepo.Email;
+            obj.SetPassword(obj.Password);
             Repo.Update(obj);
         }
     }

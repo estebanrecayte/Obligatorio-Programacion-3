@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Dominio;
+using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,7 +37,7 @@ namespace LogicaDatos.Repositorios
             }
             else
             {
-                throw new Exception("No existe el pedido a borrar");
+                throw new ExcepcionPropiaException("No existe el pedido a borrar");
             }
         }
 
@@ -58,7 +59,10 @@ namespace LogicaDatos.Repositorios
 
         public Pedido FindById(int id)
         {
-            return Contexto.Pedidos.Find(id);
+            return Contexto.Pedidos
+                   .Include(p => p.Cliente) // Incluir el cliente asociado al pedido
+                   .Include(p => p.Lineas) 
+                   .FirstOrDefault(p => p.Id == id);
         }
 
         public double ObtenerImporteTotalPedido(int id)
@@ -74,9 +78,27 @@ namespace LogicaDatos.Repositorios
             }
             else
             {
-                throw new Exception("No se encuentra pedido");
+                throw new ExcepcionPropiaException("No se encuentra pedido");
             }
         }
+        public List<Pedido> FindByFechaEmision(DateTime fechaEmision)
+        {
+            return Contexto.Pedidos
+                .Include(p => p.Cliente)
+                .Include(p => p.Lineas)
+                .Where(p => p.Fecha.Date == fechaEmision.Date)
+                .Where(p => p.Estado != false)
+                .ToList();
+        }
 
+        public List<Pedido> PedidosAnulados()
+        {
+            return Contexto.Pedidos
+                .Include(p => p.Cliente)   // Incluir el cliente asociado a cada pedido
+                .Include(p => p.Lineas)
+                .Where(p=>p.Estado==false)
+                .OrderByDescending(p => p.Fecha)
+                .ToList();
+        }
     }
 }

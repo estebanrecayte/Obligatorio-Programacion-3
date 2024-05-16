@@ -17,23 +17,23 @@ namespace Libreria_MVC.Controllers
 
         public ICUBaja<Pedido> CUBaja { get; set; }
 
-        public ICUAlta<Linea> CUAltaLinea { get; set; }
+        //public ICUAlta<Linea> CUAltaLinea { get; set; }
         public ICUListado<Pedido> CUListado { get; set; }
 
         public ICUObtenerImporteTotalPedido CUObtenerTotal { get; set; }
         public ICUObtenerListadoAnulados CUObtenerListadoAnulados { get; set; }
         public ICUBuscarPorId<Pedido> CUBuscarPedido { get; set; }
         public ICUListado<Articulo> CUListadoArticulo { get; set; }
-        public ICUListado<Linea> CUListadoLinea { get; set; }
+        //public ICUListado<Linea> CUListadoLinea { get; set; }
         public ICUListado<Cliente> CUListadoCliente { get; set; }
         
         public ICUBuscarPedidoPorFecha CUListadoPorFecha { get; set; }
         public ICUBuscarArticuloPorCodigo CUBuscarArticuloPorCodigo { get; set; }
         public ICUModificar<Pedido> CUModificar { get; set; }
         public PedidoController(ICUListado<Pedido> cUListado, ICUObtenerImporteTotalPedido cUObtenerTotal,
-            ICUBuscarPorId<Pedido> cUBuscarPedido, ICUAlta<PedidoDTO> cUAlta, ICUBaja<Pedido> cUBaja,
-            ICUAlta<Linea> cUAltaLinea, ICUListado<Articulo> cUListadoArticulo,
-            ICUListado<Cliente> cUListadoCliente, ICUListado<Linea> cUListadoLinea,
+            ICUBuscarPorId<Pedido> cUBuscarPedido, ICUAlta<PedidoDTO> cUAlta, ICUBaja<Pedido> cUBaja
+            /*ICUAlta<Linea> cUAltaLinea*/, ICUListado<Articulo> cUListadoArticulo,
+            ICUListado<Cliente> cUListadoCliente/*, ICUListado<Linea> cUListadoLinea*/,
             ICUBuscarPedidoPorFecha cUListadoPorFecha = null,
             ICUModificar<Pedido> cUModificar = null, ICUObtenerListadoAnulados cUObtenerListadoAnulados = null, ICUBuscarArticuloPorCodigo cUBuscarArticuloPorCodigo = null)
         {
@@ -42,10 +42,10 @@ namespace Libreria_MVC.Controllers
             CUBuscarPedido = cUBuscarPedido;
             CUAlta = cUAlta;
             CUBaja = cUBaja;
-            CUAltaLinea = cUAltaLinea;
+            //CUAltaLinea = cUAltaLinea;
             CUListadoArticulo = cUListadoArticulo;
             CUListadoCliente = cUListadoCliente;
-            CUListadoLinea = cUListadoLinea;
+            //CUListadoLinea = cUListadoLinea;
             CUListadoPorFecha = cUListadoPorFecha;
             CUModificar = cUModificar;
             CUObtenerListadoAnulados = cUObtenerListadoAnulados;

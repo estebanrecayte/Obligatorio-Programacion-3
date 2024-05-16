@@ -28,10 +28,10 @@ namespace LogicaNegocio.ValueObjects
         private void Validar()
         {
             if (string.IsNullOrEmpty(Valor))
-                throw new DatosInvalidosException("El nombre del autor es obligatorio");
+                throw new DatosInvalidosException("El nombre del usuario es obligatorio");
 
             if (Valor.Length < 3)
-                throw new DatosInvalidosException("El nombre del autor debe tener al memos 3 caracteres");
+                throw new DatosInvalidosException("El nombre del usuario debe tener al memos 3 caracteres");
         }
 
 

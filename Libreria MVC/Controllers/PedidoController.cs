@@ -188,7 +188,7 @@ namespace Libreria_MVC.Controllers
             try
             {
                 List<Pedido> pedidosFecha = CUListadoPorFecha.FindByFechaEmision(fechaEmision);
-                if (pedidosAnulados.Count == 0) {
+                if (pedidosFecha.Count == 0) {
                     ViewBag.Mensaje = "No hay pedidos en esta fecha";
                 }
                 return View(pedidosFecha);
@@ -201,6 +201,7 @@ namespace Libreria_MVC.Controllers
             {
                 ViewBag.Mensaje = "Ocurrio un error inesperado";
             }
+            
             return View("PedidosPorFecha");
 
         }

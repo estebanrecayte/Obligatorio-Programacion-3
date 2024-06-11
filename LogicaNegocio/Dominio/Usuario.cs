@@ -13,6 +13,11 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio.Dominio
 {
+    public enum Rol
+    {
+        Administrador,
+        Encargado
+    }
     [Table("Usuarios")]
     public class Usuario:IValidable
     {
@@ -28,6 +33,7 @@ namespace LogicaNegocio.Dominio
         public string Password { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
+        public Rol Rol { get; set; }
 
         public Usuario()
         {

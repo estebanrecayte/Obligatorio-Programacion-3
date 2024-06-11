@@ -9,13 +9,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ArticuloController : ControllerBase
     {
-        public ICUListado<Articulo> CUListado { get; set; }
+        public ICUListado<ArticuloDTO> CUListadoArticulo { get; set; }
 
         public ICUAlta<ArticuloDTO> CUAlta { get; set; }
 
-        public ArticuloController(ICUListado<Articulo> cUListado, ICUAlta<ArticuloDTO> cUAlta)
+        public ArticuloController(ICUListado<ArticuloDTO> cUListado, ICUAlta<ArticuloDTO> cUAlta)
         {
-            CUListado = cUListado;
+            CUListadoArticulo = cUListado;
             CUAlta = cUAlta;
         }
 
@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<Articulo> articulos = CUListado.ObtenerListado();
+            List<ArticuloDTO> articulos = CUListadoArticulo.ObtenerListado();
             return Ok(articulos);
         }
     }

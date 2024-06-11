@@ -18,6 +18,8 @@ namespace LogicaDatos.Repositorios
         public DbSet<Express> Express { get; set; }
         public DbSet<Comun> Comun { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<TipoMovimientoStock> TiposDeMovimiento { get; set; }
+        public DbSet<MovimientoStock> MovimientosDeStock { get; set; }
         public LibreriaContext(DbContextOptions options) : base(options) 
         {
         }
@@ -70,7 +72,21 @@ namespace LogicaDatos.Repositorios
                   .WithMany()  
                   .HasForeignKey(l => l.ArticuloId);
 
-           
+
+            modelBuilder.Entity<MovimientoStock>()
+                .HasOne(m => m.Articulo)
+                .WithMany()
+                .HasForeignKey(m => m.ArticuloId);
+
+            modelBuilder.Entity<MovimientoStock>()
+                .HasOne(m => m.TipoMovimientoStock)
+                .WithMany()
+                .HasForeignKey(m => m.TipoMovimientoStockId);
+
+            modelBuilder.Entity<MovimientoStock>()
+                .HasOne(m => m.Usuario)
+                .WithMany()
+                .HasForeignKey(m => m.UsuarioId);
         }
 
 

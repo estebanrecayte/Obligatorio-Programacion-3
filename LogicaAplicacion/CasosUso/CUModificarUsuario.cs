@@ -25,7 +25,6 @@ namespace LogicaAplicacion.CasosUso
             {
                 throw new ExcepcionPropiaException("El usuario no existe en el repositorio.");
             }
-            obj.Email = usuarioRepo.Email;
             obj.SetPassword(obj.Password);
             Repo.Update(obj);
         }

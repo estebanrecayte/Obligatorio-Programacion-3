@@ -41,7 +41,7 @@ builder.Services.AddScoped<ICUModificar<Cliente>, CUModificarCliente>();
 builder.Services.AddScoped<ICUListado<Usuario>, CUListadoUsuario>();
 builder.Services.AddScoped<ICUListado<Cliente>, CUListadoCliente>();
 builder.Services.AddScoped<ICUListado<Pedido>, CUListadoPedidos>();
-builder.Services.AddScoped<ICUListado<Articulo>, CUListadoArticulo>();
+builder.Services.AddScoped<ICUListado<ArticuloDTO>, CUListadoArticulo>();
 //builder.Services.AddScoped<ICUListado<Linea>, CUListadoLinea>();
 builder.Services.AddScoped<ICUObtenerListadoAnulados, CUObtenerListadoAnulados>();
 

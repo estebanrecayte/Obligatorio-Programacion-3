@@ -22,5 +22,18 @@ namespace DTOs
             };
             return a;
         }
+
+        public static List<ArticuloDTO> ToListDto(List<Articulo> articulos)
+        {
+            return articulos.Select(articulo => new ArticuloDTO()
+            {
+                Codigo = articulo.Codigo,
+                Nombre = articulo.Nombre,
+                Descripcion =articulo.Descripcion, 
+                Stock = articulo.Stock, 
+                Precio = articulo.Precio
+            })
+            .ToList();
+        }
     }
 }

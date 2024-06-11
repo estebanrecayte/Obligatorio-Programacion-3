@@ -1,6 +1,7 @@
 ﻿using LogicaNegocio.Dominio;
 using LogicaNegocio.ExcepcionPropias;
 using LogicaNegocio.InterfacesRepositorio;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,10 +55,28 @@ namespace LogicaDatos.Repositorios
 
         public void Update(Usuario obj)
         {
-            
-            obj.EsValido();
-            Contexto.Usuarios.Update(obj);
-            Contexto.SaveChanges();
+            var usuarioExistente = Contexto.Usuarios.Find(obj.Id);
+            if (usuarioExistente != null)
+            {
+                
+                usuarioExistente.Nombre = obj.Nombre;
+                usuarioExistente.Apellido = obj.Apellido;
+
+                
+                if (!string.IsNullOrEmpty(obj.Password))
+                {
+                    usuarioExistente.SetPassword(obj.Password);
+                }
+
+                
+                usuarioExistente.EsValido();
+
+                Contexto.SaveChanges();
+            }
+            else
+            {
+                throw new ExcepcionPropiaException("El usuario no existe en el repositorio.");
+            }
         }
 
         public Usuario BuscarUsuarioPorMail(string mail)

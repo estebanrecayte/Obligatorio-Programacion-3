@@ -12,6 +12,7 @@ namespace DTOs
         public DateTime FechaHora { get; set; }
         public long ArticuloId { get; set; }
         public int UsuarioId { get; set; }
+        public string ? MailUsuario { get; set; }
         public int TipoMovimientoStockId { get; set; }
         public int Cantidad { get; set; }
     }

@@ -15,5 +15,8 @@ namespace LogicaNegocio.Dominio
         public static int DistanciaLimiteComun { get; set; } = 100; 
         public static double TasaIVA { get; set; } = 0.22;
         public static int PlazoMaximoEntrega { get; set; } = 5;
+        public static int CantidadMaximaMovimiento { get; set; } = 20;
+
+        public static int Paginado { get; set; } = 2;
     }
 }

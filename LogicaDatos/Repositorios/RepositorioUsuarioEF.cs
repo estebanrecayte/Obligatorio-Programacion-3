@@ -84,6 +84,11 @@ namespace LogicaDatos.Repositorios
             return Contexto.Usuarios.FirstOrDefault(u => u.Email == mail);
         }
 
-        
+        public Usuario Login(string email, string password)
+        {
+            return Contexto.Usuarios
+                            .Where(usu => usu.Email == email && usu.Password == password)
+                            .SingleOrDefault();
+        }
     }
 }

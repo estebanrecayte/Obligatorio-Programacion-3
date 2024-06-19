@@ -38,12 +38,21 @@ namespace LogicaDatos.Repositorios
             var tipoMovimiento = Contexto.TiposDeMovimiento.Find(id);
             if (tipoMovimiento != null)
             {
+               
+                bool estaSiendoUtilizado = Contexto.MovimientosDeStock.Any(m => m.TipoMovimientoStock.Id == id);
+
+                if (estaSiendoUtilizado)
+                {
+                    throw new ExcepcionPropiaException("No es posible eliminar el tipo de movimiento porque está siendo utilizado");
+                }
+
+                
                 Contexto.TiposDeMovimiento.Remove(tipoMovimiento);
                 Contexto.SaveChanges();
             }
             else
             {
-                throw new ExcepcionPropiaException("No se encontró el tipo de movimiento.");
+                throw new ExcepcionPropiaException("No se encontró el tipo de movimiento");
             }
         }
 
@@ -52,13 +61,21 @@ namespace LogicaDatos.Repositorios
             var tipoMovimiento = Contexto.TiposDeMovimiento.Find(obj.Id);
             if (tipoMovimiento != null)
             {
+                bool estaSiendoUtilizado = Contexto.MovimientosDeStock.Any(m => m.TipoMovimientoStock.Id == obj.Id);
+
+                if (estaSiendoUtilizado)
+                {
+                    throw new ExcepcionPropiaException("No es posible modificar el tipo de movimiento porque está siendo utilizado.");
+                }
+
+                
                 tipoMovimiento.Nombre = obj.Nombre;
                 tipoMovimiento.ModificaStock = obj.ModificaStock;
                 Contexto.SaveChanges();
             }
             else
             {
-                throw new ExcepcionPropiaException("No se encontró el tipo de movimiento.");
+                throw new ExcepcionPropiaException("No se encontró el tipo de movimiento");
             }
         }
     }

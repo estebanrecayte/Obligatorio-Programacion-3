@@ -4,6 +4,7 @@ using LogicaDatos.Repositorios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogicaDatos.Migrations
 {
     [DbContext(typeof(LibreriaContext))]
-    partial class LibreriaContextModelSnapshot : ModelSnapshot
+    [Migration("20240615143255_ModificacionUsuario")]
+    partial class ModificacionUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,8 +218,7 @@ namespace LogicaDatos.Migrations
 
                     b.Property<string>("Rol")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

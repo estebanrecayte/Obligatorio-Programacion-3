@@ -10,5 +10,7 @@ namespace LogicaNegocio.InterfacesRepositorio
     public interface IRepositorioUsuario:IRepositorio<Usuario>
     {
         Usuario BuscarUsuarioPorMail(string mail);
+
+        Usuario Login(string email, string password);
     }
 }

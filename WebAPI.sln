@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libreria MVC", "Libreria MVC\Libreria MVC.csproj", "{1789BE44-322E-46C0-B260-FE2932042A8C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{6A73E704-1640-499D-AAA5-9978ED3B6E28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaDatos", "LogicaDatos\LogicaDatos.csproj", "{D61EAD1E-F64C-4FEA-B358-4BD2F5E90B23}"
@@ -24,10 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1789BE44-322E-46C0-B260-FE2932042A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1789BE44-322E-46C0-B260-FE2932042A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1789BE44-322E-46C0-B260-FE2932042A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1789BE44-322E-46C0-B260-FE2932042A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A73E704-1640-499D-AAA5-9978ED3B6E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A73E704-1640-499D-AAA5-9978ED3B6E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A73E704-1640-499D-AAA5-9978ED3B6E28}.Release|Any CPU.ActiveCfg = Release|Any CPU

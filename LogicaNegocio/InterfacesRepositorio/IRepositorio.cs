@@ -15,3 +15,5 @@ namespace LogicaNegocio.InterfacesRepositorio
         T FindById(int id);
     }
 }
+
+

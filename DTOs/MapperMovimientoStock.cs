@@ -52,5 +52,18 @@ namespace DTOs
             })
             .ToList();
         }
+
+        public static List<MovimientoStockDTOSimple> ToListDtoSimple(List<MovimientoStock> movimientos)
+        {
+            return movimientos.Select(movimiento => new MovimientoStockDTOSimple()
+            {
+                FechaHora = movimiento.FechaHora,
+                Articulo = movimiento.Articulo.Nombre,
+                Usuario = movimiento.Usuario.Email,
+                TipoMovimientoStock = movimiento.TipoMovimientoStock.Nombre,
+                Cantidad = movimiento.Cantidad,
+            })
+            .ToList();
+        }
     }
 }
